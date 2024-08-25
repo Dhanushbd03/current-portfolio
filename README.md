@@ -20,7 +20,7 @@ Welcome to my portfolio website! This site showcases my skills, projects, and ex
 Feel free to reach out for any Web development related work through the following platforms:
 
 - [LinkedIn](https://www.linkedin.com/in/dhanushbd03)
-- [Twitter](https://twitter.com/dhanushbd03)
+- [X](https://x.com/bddhanush)
 - [Email](mailto:bddhanush03@gmail.com)
 
 Thank you for visiting my portfolio website!
