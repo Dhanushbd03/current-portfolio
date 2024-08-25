@@ -35,14 +35,14 @@ const Hero = () => {
       </div>
       <div className="relative">
         <img
-          src="src/assets/119742887.jpeg"
+          src="119742887.jpeg"
           alt="img failed"
           className="h-72 w-72 -rotate-12 rounded-xl md:h-96 md:w-96"
           onMouseEnter={(e) => animate(e.currentTarget)}
           onMouseLeave={(e) => resetAnimation(e.currentTarget, -12)}
         />
         <img
-          src="src/assets/119742887.jpeg"
+          src="119742887.jpeg"
           alt="img failed"
           className="absolute top-0 -rotate-3 rounded-xl md:h-96 md:w-96"
           onMouseEnter={(e) => animate(e.currentTarget)}
