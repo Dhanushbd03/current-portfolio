@@ -25,7 +25,7 @@ const Experience = () => {
             <time className="mb-2 block text-sm font-normal leading-none text-anchor ">
               JUN 2024 - AUG 2024
             </time>
-            <p className="text-base font-normal text-dark dark:text-light">
+            <p className="text-base font-normal text-dark dark:text-light text-pretty text-justify">
             Serving as a Full Stack Developer on live projects for over 2 Months, gaining hands-on experience in
             frontend and backend development, database management, and building responsive web applications..
             </p>
@@ -45,7 +45,7 @@ const Experience = () => {
             <time className="mb-2 block text-sm font-normal leading-none text-anchor ">
               3 Months
             </time>
-            <p className="text-base font-normal text-dark dark:text-light">
+            <p className="text-base font-normal text-dark dark:text-light text-pretty text-justify">
             Boosted college website's organic traffic by 20% through targeted SEO. Optimized content using Google
             Analytics and keyword research. Collaborated with faculty to make academic info accessible.
             </p>

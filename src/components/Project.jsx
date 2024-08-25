@@ -34,7 +34,7 @@ const Project = () => {
           >
             {project.name} <FaLocationArrow className="group-hover:-translate-y-1" />
           </a>
-          <div className="flex gap-5 ">
+          <div className="flex gap-5 md:flex-row flex-col ">
             <img src={project.image} alt="" className="h-40" />
             <p className="mb-2 text-pretty text-justify">
               {project.description}
