@@ -1,0 +1,34 @@
+{
+  "content": [
+    {
+      "name": "Mind Mingle",
+      "description": "Mind Mingle is a React-based blog platform that leverages Appwrite for secure backend services and integrates React Hook Form for efficient data input. With Redux handling state management and TinyMCE providing rich text editing capabilities, the platform offers an interactive user interface and seamless content creation experience. Mind Mingle’s mission is to connect readers through engaging and insightful content, fostering a vibrant community of knowledge-sharing.",
+      "image": "src/assets/mindmingle.png",
+      "link": "https://github.com/Dhanushbd03/Mind-Mingle"
+    },
+    {
+      "name": "Chess",
+      "description": "I built a dynamic chess website supporting real-time two-player gameplay using React and WebSocket, with Vite.js for development and Node.js for the backend. The platform is designed with a strong focus on user experience, offering a seamless and interactive interface. This project demonstrates my expertise in modern web technologies and real-time communication, making it a perfect example of my ability to create engaging and responsive web applications",
+      "image": "src/assets/chess.png",
+      "link": "https://github.com/Dhanushbd03/chessgame"
+    },
+    {
+      "name": "Keeper App",
+      "description": "I developed a visually enhanced Google Keep clone using React. This version features a modern and intuitive UI, rich text support, advanced note organization, and real-time syncing. It offers a responsive design, dark mode, and smooth animations, providing an improved and interactive note-taking experience compared to the original.",
+      "image": "src/assets/keeperapp.png",
+      "link": "https://keeperapp.example.com"
+    },
+    {
+      "name": "Gyaan Yug",
+      "description": "Gyaan Yug is a hackathon project developed in just 24 hours by a team of four using HTML, CSS, Express.js, Node.js, and MongoDB. It’s a platform aiming to democratize technical education by providing free learning resources to underprivileged students nationwide. Gyaan Yug’s mission is to empower students to learn and adapt in an evolving world.",
+      "image": "src/assets/gyaanyug.png",
+      "link": "https://github.com/Dhanushbd03/Gyaanyug"
+    },
+    {
+      "name": "E-Commerce Website",
+      "description": "I developed a comprehensive eCommerce website using HTML, CSS, JavaScript, and Tailwind CSS for the frontend, with PHP handling the backend logic. The platform includes robust features such as category and subcategory management, product listings, user authentication, and a full-fledged admin panel for managing products, users, and sales. This project showcases my ability to create responsive, user-friendly interfaces while efficiently managing server-side operations, making it a complete solution for online retail businesses.",
+      "image": "src/assets/ecommerce.png",
+      "link": ""
+    }
+  ]
+}
