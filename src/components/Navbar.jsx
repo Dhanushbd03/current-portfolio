@@ -9,7 +9,7 @@ const Navbar = () => {
     <div className="flex justify-between p-2">
       <img
         className={`h-16 w-16 rounded-full border-2 border-dark dark:border-light object-cover ${anchorClass}`}
-        src="src/assets/passport.png"
+        src="passport.png"
         alt="Rounded avatar"
       ></img>
       <div
