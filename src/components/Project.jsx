@@ -1,48 +1,47 @@
-import React, { useState } from "react";
-import { FaLocationArrow } from "react-icons/fa";
 import projects from "../assets/project.json";
+import Section from "./Section";
 
 const Project = () => {
-  const content = projects.content;
-  const [project, setProject] = useState(content[0]);
+  const project_list = projects.content;
+
   return (
-    <>
-      <h2 className="mb-5 text-3xl font-bold text-dark dark:text-light lg:ml-10 " id="projects">
-        Projects
-      </h2>
-      <div className="pb-20 md:flex lg:ml-10">
-        <ul className="flex-column space-y mb-4 space-y-4 text-sm font-medium text-dark dark:text-light md:mb-0 md:me-4">
-          {content.map((project, index) => (
-            <li key={index}>
-              <a
-                onClick={() => {
-                  setProject(project);
-                }}
-                className="active inline-flex w-full items-center rounded-lg bg-dark px-4 py-3 text-light dark:bg-light dark:text-dark"
-                aria-current="page"
-              >
-                {project.name}
-              </a>
+    <div className="mx-auto max-w-page px-5 sm:px-6">
+      <Section id="projects" title="Projects">
+        <ul className="grid gap-8 md:grid-cols-2">
+          {project_list.map((project) => (
+            <li
+              key={project.name}
+              className="flex flex-col overflow-hidden rounded-2xl border border-line bg-card transition-colors hover:border-accent/40"
+            >
+              <div className="aspect-video overflow-hidden bg-line">
+                <img
+                  src={project.image}
+                  alt={`${project.name} preview`}
+                  loading="lazy"
+                  className="h-full w-full object-cover object-top"
+                />
+              </div>
+              <div className="flex flex-1 flex-col p-6">
+                <h3 className="text-lg font-medium text-ink">{project.name}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-mute">
+                  {project.description}
+                </p>
+                {project.link ? (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-5 inline-flex text-sm text-accent underline decoration-accent/30 underline-offset-4 transition-colors hover:decoration-accent"
+                  >
+                    View project
+                  </a>
+                ) : null}
+              </div>
             </li>
           ))}
         </ul>
-        <div className="shadow-sm shadow-dark dark:shadow-light border border-dark dark:border-light text-medium w-full rounded-lg bg-light p-6 text-dark dark:bg-dark dark:text-light space-y-5">
-          <a
-            href={project.link}
-            target="_blank"
-            className="mb-2 inline-flex items-center gap-3 text-lg font-bold text-dark hover:underline hover:scale-110 dark:text-light group"
-          >
-            {project.name} <FaLocationArrow className="group-hover:-translate-y-1" />
-          </a>
-          <div className="flex gap-5 md:flex-row flex-col ">
-            <img src={project.image} alt="" className="h-40" />
-            <p className="mb-2 text-pretty text-justify">
-              {project.description}
-            </p>
-          </div>
-        </div>
-      </div>
-    </>
+      </Section>
+    </div>
   );
 };
 

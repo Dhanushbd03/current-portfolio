@@ -1,29 +1,36 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { CiLight } from "react-icons/ci";
 import { MdDarkMode } from "react-icons/md";
 
-const DarkToggle = ({ className }) => {
-	const [darkMode, setDarkMode] = useState(true);
-	const toggleDarkMode = () => {
-		setDarkMode(!darkMode);
-		if (darkMode) {
-			document.documentElement.classList.add("dark");
-		} else {
-			document.documentElement.classList.remove("dark");
-		}
-	};
+const read_is_dark = () => document.documentElement.classList.contains("dark");
 
-	return (
-		<button
-			onClick={toggleDarkMode}
-			className={className}>
-			{darkMode ? (
-				<MdDarkMode className={className} />
-			) : (
-				<CiLight className={className} />
-			)}
-		</button>
-	);
+const DarkToggle = () => {
+  const [is_dark, set_is_dark] = useState(read_is_dark);
+
+  const toggle_theme = () => {
+    const next_is_dark = !is_dark;
+    set_is_dark(next_is_dark);
+    document.documentElement.classList.toggle("dark", next_is_dark);
+    localStorage.setItem("theme", next_is_dark ? "dark" : "light");
+  };
+
+  const label = is_dark ? "Switch to light mode" : "Switch to dark mode";
+
+  return (
+    <button
+      type="button"
+      onClick={toggle_theme}
+      aria-label={label}
+      title={label}
+      className="rounded-full p-2 text-ink transition-colors hover:text-accent"
+    >
+      {is_dark ? (
+        <CiLight className="size-5" aria-hidden="true" />
+      ) : (
+        <MdDarkMode className="size-5" aria-hidden="true" />
+      )}
+    </button>
+  );
 };
 
 export default DarkToggle;

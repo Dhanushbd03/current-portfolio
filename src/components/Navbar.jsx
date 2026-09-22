@@ -1,76 +1,137 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import { FaGithub } from "react-icons/fa";
 import DarkToggle from "./DarkToggle";
-import { CiHome } from "react-icons/ci";
+
+const nav_items = [
+  { href: "#about", label: "About" },
+  { href: "#projects", label: "Projects" },
+  { href: "#skills", label: "Skills" },
+  { href: "#experience", label: "Experience" },
+  { href: "#education", label: "Education" },
+  { href: "#contact", label: "Contact" },
+];
 
 const Navbar = () => {
-	const anchorClass = "cursor-pointer hover:scale-110 transition-all duration-100";
+  const [menu_open, set_menu_open] = useState(false);
+  const [active_id, set_active_id] = useState("about");
+
+  useEffect(() => {
+    const sections = nav_items
+      .map((item) => document.querySelector(item.href))
+      .filter(Boolean);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) {
+          set_active_id(visible.target.id);
+        }
+      },
+      { rootMargin: "-45% 0px -45% 0px", threshold: [0.1, 0.25, 0.5] },
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!menu_open) {
+      return undefined;
+    }
+    const on_key_down = (event) => {
+      if (event.key === "Escape") {
+        set_menu_open(false);
+      }
+    };
+    document.addEventListener("keydown", on_key_down);
+    return () => document.removeEventListener("keydown", on_key_down);
+  }, [menu_open]);
+
+  const close_menu = () => set_menu_open(false);
+
+  const link_class = (id) =>
+    `transition-colors hover:text-ink focus-visible:text-ink ${
+      active_id === id ? "text-ink" : "text-mute"
+    }`;
+
   return (
-    <div className="flex justify-between p-2">
-      <img
-        className={`h-16 w-16 rounded-full border-2 border-dark dark:border-light object-cover ${anchorClass}`}
-        src="passport.png"
-        alt="Rounded avatar"
-      ></img>
-      <div
-        className="hidden w-full items-center justify-between rounded-full border-2 border-dark px-5 dark:border-light md:order-1 md:flex md:w-auto"
-        id="navbar-user"
-      >
-        <ul className="mt-4 flex flex-col rounded-lg border border-dark bg-dark p-4 font-medium dark:border-light dark:bg-dark md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-light md:p-0 rtl:space-x-reverse">
-          <li>
+    <header className="sticky top-0 z-40 border-b border-line/80 bg-paper/85 backdrop-blur-md">
+      <div className="mx-auto flex h-16 max-w-page items-center justify-between gap-4 px-5 sm:px-6">
+        <a
+          href="#about"
+          className="text-sm font-medium tracking-tight text-ink"
+        >
+          Dhanush B D
+        </a>
+
+        <nav
+          className="hidden items-center gap-6 text-sm lg:flex"
+          aria-label="Primary"
+        >
+          {nav_items.map((item) => (
             <a
-              href="#about"
-              className="block rounded bg-anchor px-3 py-2 text-dark md:bg-transparent md:p-0 md:text-dark md:dark:text-light"
-              aria-current="page"
+              key={item.href}
+              href={item.href}
+              className={link_class(item.href.slice(1))}
+              aria-current={
+                active_id === item.href.slice(1) ? "true" : undefined
+              }
             >
-              <CiHome className="size-6" />
+              {item.label}
             </a>
-          </li>
-          <li>
-            <a
-              href="#skills"
-              className="block rounded px-3 py-2 text-dark hover:bg-anchor dark:text-light md:p-0 md:hover:bg-transparent md:hover:text-anchor md:dark:hover:bg-transparent"
-            >
-              Skills
-            </a>
-          </li>
-          <li>
-            <a
-              href="#experience"
-              className="block rounded px-3 py-2 text-dark hover:bg-anchor dark:text-light md:p-0 md:hover:bg-transparent md:hover:text-anchor md:dark:hover:bg-transparent"
-            >
-              Experience
-            </a>
-          </li>
-          <li>
-            <a
-              href="#projects"
-              className="block rounded px-3 py-2 text-dark hover:bg-anchor dark:text-light md:p-0 md:hover:bg-transparent md:hover:text-anchor md:dark:hover:bg-transparent"
-            >
-              
-              Projects
-            </a>
-          </li>
-          <li>
-            <a
-              href="#contact"
-              className="block rounded px-3 py-2 text-dark hover:bg-anchor dark:text-light md:p-0 md:hover:bg-transparent md:hover:text-anchor md:dark:hover:bg-transparent"
-            >
-              Contact
-            </a>
-          </li>
-        </ul>
+          ))}
+        </nav>
+
+        <div className="flex items-center gap-1">
+          <a
+            href="https://github.com/Dhanushbd03"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="GitHub profile"
+            className="rounded-full p-2 text-ink transition-colors hover:text-accent"
+          >
+            <FaGithub className="size-5" aria-hidden="true" />
+          </a>
+          <DarkToggle />
+          <button
+            type="button"
+            className="rounded-full px-3 py-2 text-sm text-ink lg:hidden"
+            aria-expanded={menu_open}
+            aria-controls="mobile-nav"
+            onClick={() => set_menu_open((open) => !open)}
+          >
+            {menu_open ? "Close" : "Menu"}
+          </button>
+        </div>
       </div>
-      <div className="order-1 flex items-center gap-5">
-        <FaGithub
-          className="size-8 cursor-pointer text-dark transition-all duration-100 hover:scale-110 hover:text-anchor dark:text-light"
-          onClick={() => {
-            window.open("https://github.com/Dhanushbd03", "_blank");
-          }}
-        />
-        <DarkToggle className="size-8 cursor-pointer text-dark transition-all duration-100 hover:scale-110 hover:text-anchor dark:text-light" />
-      </div>
-    </div>
+
+      {menu_open ? (
+        <nav
+          id="mobile-nav"
+          aria-label="Mobile"
+          className="border-t border-line px-5 py-4 sm:px-6 lg:hidden"
+        >
+          <ul className="mx-auto flex max-w-page flex-col gap-1">
+            {nav_items.map((item) => (
+              <li key={item.href}>
+                <a
+                  href={item.href}
+                  onClick={close_menu}
+                  className={`block rounded-lg px-2 py-2.5 text-base ${link_class(item.href.slice(1))}`}
+                  aria-current={
+                    active_id === item.href.slice(1) ? "true" : undefined
+                  }
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      ) : null}
+    </header>
   );
 };
 
