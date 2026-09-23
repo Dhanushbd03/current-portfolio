@@ -1,7 +1,7 @@
 import { FaArrowRight, FaGamepad } from "react-icons/fa";
 import Frame from "./Frame";
 import { Ghost, Pacman } from "./Marks";
-import { profile } from "../data/site";
+import { hero_metrics, profile } from "../data/site";
 
 const trail = [
 	{ type: "dot" },
@@ -25,12 +25,7 @@ const trail = [
 	{ type: "dot", class_name: "max-lg:hidden" },
 ];
 
-const metrics = [
-	{ label: "CORE CLASS", value: "FULL STACK DEV" },
-	{ label: "DIFFICULTY", value: "HARDCORE / PRO" },
-	{ label: "STACK READY", value: "MERN + SQL + PHP" },
-	{ label: "BASE CAMP", value: profile.location },
-];
+const metrics = hero_metrics;
 
 const TrailMark = ({ item }) => {
 	if (item.type === "ghost") {
@@ -98,22 +93,15 @@ const Hero = () => {
 
 				<div className="mt-10 grid items-start gap-8 lg:grid-cols-[minmax(0,1.35fr)_minmax(280px,0.82fr)] lg:gap-10">
 					<div>
-						<p className="kicker">[ Player 01 · Full Stack Developer ]</p>
+						<p className="kicker">[ Player 01 · {profile.role} ]</p>
 						<h1 className="mt-4 font-display text-[2.7rem] font-bold leading-[0.92] tracking-tight text-ink sm:text-6xl lg:whitespace-nowrap lg:text-[4.15rem] xl:text-[4.4rem]">
-							DHANUSH B D
+							{profile.name.toUpperCase()}
 						</h1>
 						<p className="mt-5 max-w-xl font-display text-xl font-medium leading-snug text-royal sm:text-[1.7rem]">
-							Crafting reactive web apps & solving real-world challenges with
-							playful precision.
+							{profile.headline}
 						</p>
 						<p className="mt-5 max-w-xl text-sm leading-relaxed text-muted sm:text-base">
-							Full Stack Developer passionate about creating innovative web
-							applications and tackling real-world challenges. With hands-on
-							experience in both front-end and back-end development, I excel in
-							building responsive, user-friendly solutions. My focus is on
-							delivering high-quality, efficient results that meet the unique
-							needs of each project. I blend creativity with technical
-							expertise to craft intuitive and engaging web solutions.
+							{profile.summary}
 						</p>
 						<div className="mt-8 flex flex-col gap-3 sm:flex-row">
 							<a
@@ -176,7 +164,7 @@ const Hero = () => {
 								<span className="mb-0.5 block text-[11px] font-bold tracking-[0.14em]">
 									READY FOR HIRE
 								</span>
-								Full-time roles, contract work, and engineering collaborations.
+								{profile.location} · production web, mobile, API, and cloud work.
 							</p>
 						</div>
 					</aside>

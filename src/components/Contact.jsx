@@ -1,8 +1,16 @@
 import { useState } from "react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
-import { HiOutlineMail } from "react-icons/hi";
+import { HiOutlineGlobeAlt, HiOutlineMail, HiOutlinePhone } from "react-icons/hi";
 import Frame from "./Frame";
-import { profile } from "../data/site";
+import { contact_channels, profile } from "../data/site";
+
+const channel_icons = {
+	email: HiOutlineMail,
+	phone: HiOutlinePhone,
+	web: HiOutlineGlobeAlt,
+	linkedin: FaLinkedin,
+	github: FaGithub,
+};
 
 const Contact = () => {
 	const [copied, set_copied] = useState(false);
@@ -28,29 +36,7 @@ const Contact = () => {
 		window.setTimeout(() => set_copied(false), 2200);
 	};
 
-	const channels = [
-		{
-			kicker: "DIRECT DISPATCH",
-			label: profile.email,
-			href: `mailto:${profile.email}`,
-			icon: HiOutlineMail,
-			action: "copy",
-		},
-		{
-			kicker: "NETWORK LINK",
-			label: profile.linkedin_label,
-			href: profile.linkedin_url,
-			icon: FaLinkedin,
-			action: "open",
-		},
-		{
-			kicker: "SOURCE DEPOT",
-			label: profile.github_label,
-			href: profile.github_url,
-			icon: FaGithub,
-			action: "open",
-		},
-	];
+	const channels = contact_channels;
 
 	return (
 		<section id="contact" className="scroll-mt-28 bg-stage py-16 sm:py-20">
@@ -67,14 +53,14 @@ const Contact = () => {
 							LET’S BUILD SOMETHING EPIC TOGETHER.
 						</h2>
 						<p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted sm:text-base">
-							Open for full-stack opportunities, scalable web application
-							builds, contract work, and engineering collaborations. If you
-							have questions about my expertise or suggestions for improvement,
-							I’d be happy to connect.
+							Software Engineer based in {profile.location}. Reach out about
+							production systems across backend services, web and mobile apps,
+							APIs, and cloud deployment.
 						</p>
 						<div className="mt-8 space-y-3">
 							{channels.map((channel) => {
-								const Icon = channel.icon;
+								const Icon = channel_icons[channel.kind];
+								const opens_new_tab = channel.kind !== "email" && channel.kind !== "phone";
 								return (
 									<div
 										key={channel.kicker}
@@ -86,14 +72,14 @@ const Contact = () => {
 											</p>
 											<a
 												href={channel.href}
-												target={channel.action === "open" ? "_blank" : undefined}
-												rel={channel.action === "open" ? "noreferrer" : undefined}
+												target={opens_new_tab ? "_blank" : undefined}
+												rel={opens_new_tab ? "noreferrer" : undefined}
 												className="mt-0.5 block truncate text-sm font-semibold text-royal sm:text-base"
 											>
 												{channel.label}
 											</a>
 										</div>
-										{channel.action === "copy" ? (
+										{channel.kind === "email" ? (
 											<button
 												type="button"
 												onClick={copy_email}
@@ -108,8 +94,8 @@ const Contact = () => {
 										) : (
 											<a
 												href={channel.href}
-												target="_blank"
-												rel="noreferrer"
+												target={opens_new_tab ? "_blank" : undefined}
+												rel={opens_new_tab ? "noreferrer" : undefined}
 												aria-label={channel.kicker}
 												className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-line text-ink transition hover:bg-cream"
 											>
