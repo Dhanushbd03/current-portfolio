@@ -1,26 +1,27 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { CiLight } from "react-icons/ci";
 import { MdDarkMode } from "react-icons/md";
 
 const DarkToggle = ({ className }) => {
-	const [darkMode, setDarkMode] = useState(true);
-	const toggleDarkMode = () => {
-		setDarkMode(!darkMode);
-		if (darkMode) {
-			document.documentElement.classList.add("dark");
-		} else {
-			document.documentElement.classList.remove("dark");
-		}
+	const [is_dark, set_is_dark] = useState(false);
+
+	const toggle_theme = () => {
+		const next_is_dark = !is_dark;
+		set_is_dark(next_is_dark);
+		document.documentElement.classList.toggle("dark", next_is_dark);
 	};
 
 	return (
 		<button
-			onClick={toggleDarkMode}
-			className={className}>
-			{darkMode ? (
-				<MdDarkMode className={className} />
+			type="button"
+			onClick={toggle_theme}
+			className={className}
+			aria-label={is_dark ? "Switch to light theme" : "Switch to dark theme"}
+		>
+			{is_dark ? (
+				<CiLight className="h-5 w-5" />
 			) : (
-				<CiLight className={className} />
+				<MdDarkMode className="h-5 w-5" />
 			)}
 		</button>
 	);

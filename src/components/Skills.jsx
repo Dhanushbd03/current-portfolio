@@ -1,35 +1,92 @@
-import React from "react";
-import { RiTailwindCssFill, RiReactjsFill } from "react-icons/ri";
-import { FaHtml5, FaCss3, FaJs , FaNodeJs,FaGitSquare,FaGithub } from "react-icons/fa";
-import { SiRedux ,SiExpress,SiPhp,SiAppwrite,SiMysql} from "react-icons/si";
-import { BiLogoPostgresql } from "react-icons/bi";
-import {TbApi,TbBrandCpp} from "react-icons/tb";
-import {DiDjango} from "react-icons/di";
-import {BsBootstrapFill} from "react-icons/bs";
+import Frame from "./Frame";
+import SectionHeading from "./SectionHeading";
+
+const skill_groups = [
+	{
+		title: "FRONT-END MASTERY",
+		buff: "SPEED BOOST",
+		buff_value: "+100% RESPONSIVE",
+		buff_class: "text-royal",
+		items: [
+			{ name: "React", tone: "bg-arcade" },
+			{ name: "JavaScript", tone: "bg-royal" },
+			{ name: "Tailwind", tone: "bg-arcade" },
+			{ name: "Redux", tone: "bg-royal" },
+			{ name: "HTML5", tone: "bg-ink" },
+			{ name: "CSS3", tone: "bg-[#C5C1B8]" },
+		],
+	},
+	{
+		title: "BACK-END & SCHEMAS",
+		buff: "RELIABILITY",
+		buff_value: "SQL CONSTRAINTS",
+		buff_class: "text-blinky",
+		items: [
+			{ name: "Node.js", tone: "bg-arcade" },
+			{ name: "Express", tone: "bg-royal" },
+			{ name: "PostgreSQL", tone: "bg-royal" },
+			{ name: "MySQL", tone: "bg-arcade" },
+			{ name: "PHP", tone: "bg-blinky" },
+			{ name: "Django", tone: "bg-royal" },
+			{ name: "REST APIs", tone: "bg-arcade" },
+		],
+	},
+	{
+		title: "TOOLS & ENGINES",
+		buff: "VERSATILITY",
+		buff_value: "MULTI-STACK",
+		buff_class: "text-pinky",
+		items: [
+			{ name: "Git", tone: "bg-blinky" },
+			{ name: "GitHub", tone: "bg-ink" },
+			{ name: "C++", tone: "bg-[#8D897F]" },
+			{ name: "Appwrite", tone: "bg-blinky" },
+			{ name: "Bootstrap", tone: "bg-royal" },
+		],
+	},
+];
 
 const Skills = () => {
-    const iconClass = "text-5xl text-dark dark:text-light hover:scale-150";
-    const skills = {
-      frontend: [FaHtml5, FaCss3, FaJs, RiTailwindCssFill, RiReactjsFill, SiRedux],
-        backend: [FaNodeJs,SiExpress,BiLogoPostgresql,TbApi,SiPhp,DiDjango],
-        others : [FaGitSquare,FaGithub,TbBrandCpp,SiAppwrite,BsBootstrapFill,SiMysql],
-    };
-  
-    return (
-      <div id="skills" className="pb-16">
-        <h2 className="mb-5 text-3xl font-bold text-dark dark:text-light lg:ml-10">Skills</h2>
-        {Object.keys(skills).map((category) => (
-          <div key={category} className="py-5">
-            <div className="flex justify-evenly">
-              {skills[category].map((Icon, index) => (
-                <Icon key={index} className={iconClass} />
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-    );
-  };
-  
+	return (
+		<section id="skills" className="scroll-mt-28 py-8 sm:py-12">
+			<Frame>
+				<SectionHeading
+					kicker="[ Inventory // Collectibles ]"
+					title="POWER-UP TOOLKIT"
+					text="Arcade inventory slots with active power pellets, languages, frameworks, and database engines."
+				/>
+				<div className="grid gap-4 lg:grid-cols-3">
+					{skill_groups.map((group) => (
+						<article key={group.title} className="hud-card flex flex-col p-5">
+							<div className="mb-4 flex items-center justify-between gap-3">
+								<h3 className="text-[11px] font-bold tracking-[0.16em]">
+									{group.title}
+								</h3>
+								<span className="rounded-full border border-line bg-cream px-2.5 py-1 text-[10px] font-bold tracking-[0.14em]">
+									{group.items.length} ITEMS
+								</span>
+							</div>
+							<div className="flex flex-wrap gap-2">
+								{group.items.map((item) => (
+									<span
+										key={item.name}
+										className="inline-flex items-center gap-2 rounded-full border border-line bg-card px-3 py-1.5 text-sm font-medium shadow-sm transition hover:-translate-y-0.5"
+									>
+										<span className={`h-2.5 w-2.5 rounded-full ${item.tone}`} />
+										{item.name}
+									</span>
+								))}
+							</div>
+							<div className="mt-5 flex flex-wrap items-center justify-between gap-2 border-t border-line pt-3 text-[10px] font-bold tracking-[0.14em]">
+								<span className="text-muted">BUFF STATUS: {group.buff}</span>
+								<span className={group.buff_class}>{group.buff_value}</span>
+							</div>
+						</article>
+					))}
+				</div>
+			</Frame>
+		</section>
+	);
+};
 
 export default Skills;
