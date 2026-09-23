@@ -1,49 +1,65 @@
-import React from "react";
+import SectionHeading from "./SectionHeading";
+
+const schools = [
+	{
+		label: "B.TECH IN CSE",
+		school: "Srinivas University Institute of Engineering and Technology",
+		when: "2021 – PRESENT",
+		detail: "Computer Science and Engineering · Avg CGPA 8.88",
+		dot: "bg-arcade",
+	},
+	{
+		label: "PRE-UNIVERSITY (PUC)",
+		school: "Sri B G S Science & Commerce P U College",
+		when: "2019 – 2021",
+		detail: "PUC · Percentage 93%",
+		dot: "bg-royal",
+	},
+	{
+		label: "SECONDARY SCHOOL",
+		school: "Ganapathy High School",
+		when: "2018 – 2019",
+		detail: "SSLC · Percentage 91.82%",
+		dot: "bg-pinky",
+	},
+];
 
 const Education = () => {
-  return (<>
-    <h2 className="mb-5 text-3xl font-bold text-dark dark:text-light lg:ml-10">Education</h2>
-
-    <ol className="relative border-s border-dark dark:border-light lg:ml-10">
-      <li className="mb-10 ms-4">
-        <div className="absolute -start-1.5 mt-1.5 h-3 w-3 rounded-full border border-dark bg-light dark:border-light dark:bg-dark"></div>
-        <time className="mb-1 text-sm font-normal leading-none text-dark dark:text-light">
-          2021 - Present
-        </time>
-        <h3 className="text-lg font-semibold text-dark dark:text-light">
-          Srinivas University Institute of Engineering and Technology
-        </h3>
-        <p className="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">
-          Computer Science and Engineering - Avg CGPA : 8.88{" "}
-        </p>
-      </li>
-      <li className="mb-10 ms-4">
-        <div className="absolute -start-1.5 mt-1.5 h-3 w-3 rounded-full border border-dark bg-light dark:border-light dark:bg-dark"></div>
-        <time className="mb-1 text-sm font-normal leading-none text-dark dark:text-light">
-          2019 - 2021
-        </time>
-        <h3 className="text-lg font-semibold text-dark dark:text-light">
-          Sri B G S Science & Commerce P U College
-        </h3>
-        <p className="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">
-          PUC - Percentage : 93%{" "}
-        </p>
-      </li>
-      <li className="mb-10 ms-4">
-        <div className="absolute -start-1.5 mt-1.5 h-3 w-3 rounded-full border border-dark bg-light dark:border-light dark:bg-dark"></div>
-        <time className="mb-1 text-sm font-normal leading-none text-dark dark:text-light">
-          2018 - 2019{" "}
-        </time>
-        <h3 className="text-lg font-semibold text-dark dark:text-light">
-          Ganapathy High School
-        </h3>
-        <p className="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">
-          SSLC - Percentage : 91.82%{" "}
-        </p>
-      </li>
-    </ol>
-    </>
-  );
+	return (
+		<div id="education">
+			<SectionHeading
+				compact
+				kicker="[ Tutorial Completed // Academics ]"
+				title="EDUCATION"
+				text="Academic milestones, theoretical rigor, and recorded scores."
+			/>
+			<div className="relative space-y-4 border-l-2 border-dotted border-line pl-6">
+				{schools.map((school) => (
+					<article key={school.school} className="relative">
+						<span
+							className={`absolute -left-[31px] top-6 h-3.5 w-3.5 rounded-full ring-4 ring-cream ${school.dot}`}
+						/>
+						<div className="hud-card p-5">
+							<div className="flex flex-wrap items-start justify-between gap-3">
+								<p className="text-[11px] font-bold tracking-[0.16em] text-royal">
+									{school.label}
+								</p>
+								<span className="rounded-full border border-line bg-cream px-2.5 py-1 text-[10px] font-bold tracking-[0.12em]">
+									{school.when}
+								</span>
+							</div>
+							<h3 className="mt-2 font-display text-xl font-bold leading-tight tracking-tight">
+								{school.school}
+							</h3>
+							<p className="mt-2 text-sm leading-relaxed text-muted">
+								{school.detail}
+							</p>
+						</div>
+					</article>
+				))}
+			</div>
+		</div>
+	);
 };
 
 export default Education;

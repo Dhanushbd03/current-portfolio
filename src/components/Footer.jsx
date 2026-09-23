@@ -1,41 +1,41 @@
-import React from "react";
+import Frame from "./Frame";
+import { nav_links, profile } from "../data/site";
 
 const Footer = () => {
-  return (
-    <footer className="m-4 rounded-lg bg-light shadow dark:bg-dark border-dark border-2 dark:border-light lg:ml-10">
-      <div className="mx-auto w-full max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
-        <span className="text-sm text-dark dark:text-light sm:text-center">
-          © 2024{" "}
-          <a href="#" className="hover:underline">
-           Made with ❤️ 
-          </a>
-          
-        </span>
-        <ul className="mt-3 flex flex-wrap items-center text-sm font-medium text-dark dark:text-light sm:mt-0">
-          <li>
-            <a href="#about" className="me-4 hover:underline md:me-6">
-              About
-            </a>
-          </li>
-          <li>
-            <a href="#skills" className="me-4 hover:underline md:me-6">
-              Skills
-            </a>
-          </li>
-          <li>
-            <a href="#projects" className="me-4 hover:underline md:me-6">
-              Projects
-            </a>
-          </li>
-          <li>
-            <a href="#contact" className="hover:underline">
-              Contact
-            </a>
-          </li>
-        </ul>
-      </div>
-    </footer>
-  );
+	const year = new Date().getFullYear();
+
+	return (
+		<footer className="border-t border-line py-8">
+			<Frame>
+				<div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+					<p className="text-sm text-muted">
+						© {year} {profile.name}
+						<span className="px-2 text-line">·</span>
+						Made with care
+					</p>
+					<ul className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm font-medium">
+						{nav_links.map((link) => (
+							<li key={link.id}>
+								<a href={`#${link.id}`} className="hover:text-royal">
+									{link.label.charAt(0) + link.label.slice(1).toLowerCase()}
+								</a>
+							</li>
+						))}
+						<li>
+							<a
+								href={profile.x_url}
+								target="_blank"
+								rel="noreferrer"
+								className="hover:text-royal"
+							>
+								X
+							</a>
+						</li>
+					</ul>
+				</div>
+			</Frame>
+		</footer>
+	);
 };
 
 export default Footer;
