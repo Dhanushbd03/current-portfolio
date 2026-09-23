@@ -1,37 +1,23 @@
-import React from "react";
+const footer_links = [
+  { href: "#about", label: "About" },
+  { href: "#skills", label: "Skills" },
+  { href: "#projects", label: "Projects" },
+  { href: "#contact", label: "Contact" },
+];
 
 const Footer = () => {
   return (
-    <footer className="m-4 rounded-lg bg-light shadow dark:bg-dark border-dark border-2 dark:border-light lg:ml-10">
-      <div className="mx-auto w-full max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
-        <span className="text-sm text-dark dark:text-light sm:text-center">
-          © 2024{" "}
-          <a href="#" className="hover:underline">
-           Made with ❤️ 
-          </a>
-          
-        </span>
-        <ul className="mt-3 flex flex-wrap items-center text-sm font-medium text-dark dark:text-light sm:mt-0">
-          <li>
-            <a href="#about" className="me-4 hover:underline md:me-6">
-              About
-            </a>
-          </li>
-          <li>
-            <a href="#skills" className="me-4 hover:underline md:me-6">
-              Skills
-            </a>
-          </li>
-          <li>
-            <a href="#projects" className="me-4 hover:underline md:me-6">
-              Projects
-            </a>
-          </li>
-          <li>
-            <a href="#contact" className="hover:underline">
-              Contact
-            </a>
-          </li>
+    <footer className="border-t border-line">
+      <div className="mx-auto flex max-w-page flex-col gap-4 px-5 py-8 text-sm text-mute sm:px-6 md:flex-row md:items-center md:justify-between">
+        <p>© 2024 Made with ❤️</p>
+        <ul className="flex flex-wrap gap-x-5 gap-y-2">
+          {footer_links.map((link) => (
+            <li key={link.href}>
+              <a href={link.href} className="transition-colors hover:text-ink">
+                {link.label}
+              </a>
+            </li>
+          ))}
         </ul>
       </div>
     </footer>

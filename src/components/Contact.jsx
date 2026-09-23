@@ -1,57 +1,60 @@
-import React from "react";
-import { FaLinkedin, FaGithub } from "react-icons/fa";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { SiGmail } from "react-icons/si";
+import Section from "./Section";
+
+const contact_links = [
+  {
+    label: "LinkedIn",
+    value: "linkedin.com/in/dhanushbd03",
+    href: "https://www.linkedin.com/in/dhanushbd03",
+    Icon: FaLinkedin,
+  },
+  {
+    label: "Email",
+    value: "bddhanush03@gmail.com",
+    href: "mailto:bddhanush03@gmail.com",
+    Icon: SiGmail,
+  },
+  {
+    label: "GitHub",
+    value: "github.com/Dhanushbd03",
+    href: "https://github.com/Dhanushbd03",
+    Icon: FaGithub,
+  },
+];
 
 const Contact = () => {
   return (
-    <div className="flex flex-col pt-5" id="contact">
-      <h2 className="mb-5 text-3xl font-bold text-dark dark:text-light lg:ml-10">
-        Contact Me
-      </h2>
-      <div className="flex border-collapse flex-col items-center justify-center border-x-2 border-b-2 border-dark py-5 dark:border-light lg:ml-10">
-        <h1 className="text-center text-5xl text-dark dark:text-light">
+    <div className="mx-auto max-w-page px-5 sm:px-6">
+      <Section id="contact" title="Contact">
+        <h3 className="max-w-xl text-3xl font-medium tracking-tight text-ink sm:text-4xl">
           Looking Forward to Your Thoughts
-        </h1>
-        <p className="text-center text-xl text-anchor">
+        </h3>
+        <p className="mt-4 max-w-xl text-base leading-relaxed text-mute">
           If you have questions about my expertise or suggestions for
-          improvement, I'd be happy to connect.
+          improvement, I&apos;d be happy to connect.
         </p>
-      </div>
-      <div className="flex border-collapse flex-col md:flex-row items-center justify-center border-x-2 border-b-2 border-dark dark:border-light lg:ml-10">
-        <div
-          className="flex h-32 md:w-1/3 w-full  border-collapse cursor-pointer flex-col items-center justify-center border-x-2 border-b-2 border-dark text-dark hover:bg-amber-600 hover:text-dark dark:border-light dark:text-light"
-          onClick={() =>
-            window.open("https://www.linkedin.com/in/dhanushbd03", "_blank")
-          }
-        >
-          <h1 className="text-xl">
-            <FaLinkedin />
-          </h1>
-          <p>linkedin.com/in/dhanushbd03</p>
-        </div>
-        <div
-          className="flex h-32 md:w-1/3 w-full  border-collapse cursor-pointer flex-col items-center justify-center border-x-2 border-b-2 border-dark text-dark hover:bg-rose-600 dark:border-light dark:text-light"
-          onClick={() => {
-            window.open("mailto:bddhanush03@gmail.com", "_blank");
-          }}
-        >
-          <h1 className="text-xl">
-            <SiGmail />
-          </h1>
-          <p>bddhanush03@gmail.com</p>
-        </div>
-        <div
-          className="flex h-32 md:w-1/3 w-full  border-collapse cursor-pointer flex-col items-center justify-center border-x-2 border-b-2 border-dark text-dark hover:bg-lime-700 dark:border-light dark:text-light"
-          onClick={() =>
-            window.open("https://github.com/Dhanushbd03", "_blank")
-          }
-        >
-          <h1 className="text-xl">
-            <FaGithub />
-          </h1>
-          <p>github.com/Dhanushbd03</p>
-        </div>
-      </div>
+        <ul className="mt-10 max-w-2xl divide-y divide-line border-y border-line">
+          {contact_links.map(({ label, value, href, Icon }) => (
+            <li key={label}>
+              <a
+                href={href}
+                target={href.startsWith("mailto:") ? undefined : "_blank"}
+                rel={href.startsWith("mailto:") ? undefined : "noreferrer"}
+                className="group flex flex-col gap-1 py-5 sm:flex-row sm:items-center sm:justify-between sm:gap-4"
+              >
+                <span className="flex items-center gap-3 text-ink">
+                  <Icon className="size-4 text-accent" aria-hidden="true" />
+                  {label}
+                </span>
+                <span className="text-sm text-mute transition-colors group-hover:text-accent sm:text-right">
+                  {value}
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </Section>
     </div>
   );
 };
