@@ -2,13 +2,13 @@ const Hero = () => {
   return (
     <section
       id="about"
-      className="mx-auto grid max-w-page items-center gap-12 px-5 py-16 sm:px-6 md:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] md:gap-16 md:py-28"
+      className="mx-auto max-w-page px-5 py-20 sm:px-6 md:py-32"
     >
-      <div>
-        <h1 className="max-w-xl text-4xl font-medium tracking-tight text-ink sm:text-5xl">
+      <div className="max-w-2xl">
+        <h1 className="text-4xl font-medium tracking-tight text-ink sm:text-6xl">
           Hi 👋, I&apos;m Dhanush B D
         </h1>
-        <p className="mt-6 max-w-xl text-base leading-relaxed text-mute sm:text-lg">
+        <p className="mt-8 max-w-xl text-base leading-relaxed text-mute sm:text-lg">
           a <span className="font-medium text-ink">Full Stack Developer</span>{" "}
           passionate about creating innovative web applications and tackling
           real-world challenges. With hands-on experience in both front-end and
@@ -33,15 +33,6 @@ const Hero = () => {
             GitHub
           </a>
         </div>
-      </div>
-      <div className="justify-self-start md:justify-self-end">
-        <img
-          src="portrait.jpg"
-          alt="Portrait of Dhanush B D"
-          width="900"
-          height="1145"
-          className="w-56 rounded-2xl border border-line object-cover sm:w-72"
-        />
       </div>
     </section>
   );
