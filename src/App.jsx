@@ -20,7 +20,7 @@ const App = () => {
 					id="timeline"
 					className="scroll-mt-28 py-16 sm:py-20"
 				>
-					<div className="mx-auto grid w-full max-w-6xl gap-14 px-4 sm:px-6 lg:grid-cols-2 lg:gap-10">
+					<div className="mx-auto grid w-full max-w-6xl gap-14 px-4 sm:px-6 xl:grid-cols-2 xl:gap-10">
 						<Experience />
 						<Education />
 					</div>

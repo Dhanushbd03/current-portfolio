@@ -1,28 +1,7 @@
+import { education_records } from "../data/site";
 import SectionHeading from "./SectionHeading";
 
-const schools = [
-	{
-		label: "B.TECH IN CSE",
-		school: "Srinivas University Institute of Engineering and Technology",
-		when: "2021 – PRESENT",
-		detail: "Computer Science and Engineering · Avg CGPA 8.88",
-		dot: "bg-arcade",
-	},
-	{
-		label: "PRE-UNIVERSITY (PUC)",
-		school: "Sri B G S Science & Commerce P U College",
-		when: "2019 – 2021",
-		detail: "PUC · Percentage 93%",
-		dot: "bg-royal",
-	},
-	{
-		label: "SECONDARY SCHOOL",
-		school: "Ganapathy High School",
-		when: "2018 – 2019",
-		detail: "SSLC · Percentage 91.82%",
-		dot: "bg-pinky",
-	},
-];
+const schools = education_records;
 
 const Education = () => {
 	return (

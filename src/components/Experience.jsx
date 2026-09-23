@@ -1,30 +1,8 @@
 import { FaPlay } from "react-icons/fa";
+import { experience_roles } from "../data/site";
 import SectionHeading from "./SectionHeading";
 
-const roles = [
-	{
-		title: "Full Stack Developer",
-		org: "Kakunje Software Private Limited",
-		when: "JUN 2024 – AUG 2024",
-		dot: "bg-arcade",
-		points: [
-			"Served as a Full Stack Developer on live projects for over 2 months.",
-			"Gained hands-on experience in frontend and backend development and database management.",
-			"Built responsive web applications across the stack.",
-		],
-	},
-	{
-		title: "Content Writer",
-		org: "College Website",
-		when: "3 MONTHS",
-		dot: "bg-royal",
-		points: [
-			"Boosted the college website's organic traffic by 20% through targeted SEO.",
-			"Optimized content using Google Analytics and keyword research.",
-			"Collaborated with faculty to make academic information accessible.",
-		],
-	},
-];
+const roles = experience_roles;
 
 const Experience = () => {
 	return (
@@ -33,11 +11,11 @@ const Experience = () => {
 				compact
 				kicker="[ Quest Log // Experience ]"
 				title="TRACK RECORD"
-				text="Production missions, software internships, and technical documentation."
+				text="Software engineering, internship delivery, and technical documentation."
 			/>
 			<div className="relative space-y-4 border-l-2 border-dotted border-line pl-6">
 				{roles.map((role) => (
-					<article key={role.title} className="relative">
+					<article key={`${role.title}-${role.when}`} className="relative">
 						<span
 							className={`absolute -left-[31px] top-6 h-3.5 w-3.5 rounded-full ring-4 ring-cream ${role.dot}`}
 						/>

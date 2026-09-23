@@ -1,43 +1,37 @@
-import { FaArrowRight } from "react-icons/fa";
+import { FaArrowRight, FaBookOpen, FaChess, FaRobot, FaShoppingBag, FaTaxi, FaUsers } from "react-icons/fa";
 import projects from "../assets/project.json";
 import Frame from "./Frame";
 import SectionHeading from "./SectionHeading";
 
-const quest_meta = {
-	"Mind Mingle": {
-		code: "QUEST 01 // PLATFORM",
-		status: "ACTIVE BUILD",
-		stack: "REACT + APPWRITE",
-		span: "lg:col-span-4",
-		fit: "object-top",
+const span_class = {
+	wide: "lg:col-span-4",
+	tile: "lg:col-span-2",
+};
+
+const visuals = {
+	taxi: {
+		icon: FaTaxi,
+		panel: "from-[#FFF4C2] via-[#FFD600] to-[#FFE08A]",
 	},
-	Chess: {
-		code: "QUEST 02 // MULTIPLAYER",
-		status: "REAL-TIME",
-		stack: "REACT + WEBSOCKET",
-		span: "lg:col-span-2",
-		fit: "object-center",
+	hiring: {
+		icon: FaUsers,
+		panel: "from-[#E4E4FF] via-[#C9CAFF] to-[#FFD600]",
 	},
-	"Keeper App": {
-		code: "QUEST 03 // NOTES",
-		status: "UI BUILD",
-		stack: "REACT",
-		span: "lg:col-span-2",
-		fit: "object-top",
+	docs: {
+		icon: FaRobot,
+		panel: "from-[#FFE3F0] via-[#F6E7A1] to-[#D9DBFF]",
 	},
-	"Gyaan Yug": {
-		code: "QUEST 04 // HACKATHON",
-		status: "24H SPRINT",
-		stack: "NODE + MONGODB",
-		span: "lg:col-span-2",
-		fit: "object-top",
+	store: {
+		icon: FaShoppingBag,
+		panel: "from-[#FFF4C2] via-[#FFE08A] to-[#E4E4FF]",
 	},
-	"E-Commerce Website": {
-		code: "QUEST 05 // STOREFRONT",
-		status: "FULL STACK",
-		stack: "PHP + TAILWIND",
-		span: "lg:col-span-2",
-		fit: "object-top",
+	chess: {
+		icon: FaChess,
+		panel: "from-[#F6F3EC] via-[#F6E7A1] to-[#FFD600]",
+	},
+	learn: {
+		icon: FaBookOpen,
+		panel: "from-[#F6F3EC] via-[#F6E7A1] to-[#C8CBFF]",
 	},
 };
 
@@ -56,41 +50,42 @@ const Project = () => {
 				<SectionHeading
 					kicker="[ World 01 // Selected Quests ]"
 					title="FEATURED PROJECTS"
-					text="Bento grid of featured full-stack software and interactive builds."
+					text="Production platforms, AI builds, and interactive apps from the current quest log."
 					meta={`${quests.length} QUEST CARDS LOADED`}
 				/>
 				<div className="grid gap-4 lg:grid-cols-6">
 					{quests.map((quest) => {
-						const meta = quest_meta[quest.name] || {
-							code: "QUEST // BUILD",
-							status: "BUILD",
-							stack: "FULL STACK",
-							span: "lg:col-span-2",
-							fit: "object-top",
-						};
 						const href = usable_link(quest.link);
+						const card_span = span_class[quest.span] || span_class.tile;
+						const visual = visuals[quest.visual] || visuals.taxi;
+						const Icon = visual.icon;
 
 						return (
 							<article
 								key={quest.name}
-								className={`hud-card flex h-full flex-col overflow-hidden ${meta.span}`}
+								className={`hud-card flex h-full flex-col overflow-hidden ${card_span}`}
 							>
 								<div className="flex items-center justify-between gap-3 bg-royal/[0.06] px-4 py-2.5">
 									<p className="text-[10px] font-bold tracking-[0.16em] text-royal sm:text-[11px]">
-										[ {meta.code} ]
+										[ {quest.code} ]
 									</p>
 									<p className="shrink-0 text-[10px] font-bold tracking-[0.16em] text-royal">
-										{meta.status}
+										{quest.status}
 									</p>
 								</div>
 								<div className="flex flex-1 flex-col p-5">
 									<h3 className="font-display text-2xl font-bold tracking-tight">
 										{quest.name}
 									</h3>
-									<p className="mt-1 text-[11px] font-bold tracking-[0.16em] text-royal">
-										{meta.stack}
+									{quest.subtitle ? (
+										<p className="mt-1 text-sm font-semibold text-ink">
+											{quest.subtitle}
+										</p>
+									) : null}
+									<p className="mt-1 text-[11px] font-bold leading-relaxed tracking-[0.12em] text-royal">
+										{quest.stack}
 									</p>
-									<p className="mt-3 line-clamp-4 text-sm leading-relaxed text-muted">
+									<p className="mt-3 text-sm leading-relaxed text-muted">
 										{quest.description}
 									</p>
 									{href ? (
@@ -105,12 +100,27 @@ const Project = () => {
 										</a>
 									) : null}
 									<div className="mt-auto pt-4">
-										<img
-											src={quest.image}
-											alt={`${quest.name} preview`}
-											loading="lazy"
-											className={`h-36 w-full rounded-2xl border border-line object-cover ${meta.fit}`}
-										/>
+										{quest.image ? (
+											<img
+												src={quest.image}
+												alt={`${quest.name} preview`}
+												loading="lazy"
+												className="h-36 w-full rounded-2xl border border-line object-cover object-top"
+											/>
+										) : (
+											<div
+												className={`grid h-36 w-full place-items-center rounded-2xl border border-line bg-gradient-to-br ${visual.panel}`}
+											>
+												<div className="grid place-items-center gap-2 text-[#1a1400]">
+													<span className="grid h-14 w-14 place-items-center rounded-full border border-[#1a1400]/15 bg-white/50">
+														<Icon className="h-6 w-6" />
+													</span>
+													<span className="text-[10px] font-bold tracking-[0.18em]">
+														QUEST HUD
+													</span>
+												</div>
+											</div>
+										)}
 									</div>
 								</div>
 							</article>
