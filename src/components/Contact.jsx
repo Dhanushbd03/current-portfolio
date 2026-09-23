@@ -8,13 +8,24 @@ const Contact = () => {
 	const [copied, set_copied] = useState(false);
 
 	const copy_email = async () => {
+		let did_copy = false;
 		try {
 			await navigator.clipboard.writeText(profile.email);
-			set_copied(true);
-			window.setTimeout(() => set_copied(false), 1600);
+			did_copy = true;
 		} catch {
-			window.location.href = `mailto:${profile.email}`;
+			const field = document.createElement("textarea");
+			field.value = profile.email;
+			field.setAttribute("readonly", "");
+			field.style.position = "fixed";
+			field.style.left = "-9999px";
+			document.body.appendChild(field);
+			field.select();
+			did_copy = document.execCommand("copy");
+			document.body.removeChild(field);
 		}
+		if (!did_copy) return;
+		set_copied(true);
+		window.setTimeout(() => set_copied(false), 2200);
 	};
 
 	const channels = [
